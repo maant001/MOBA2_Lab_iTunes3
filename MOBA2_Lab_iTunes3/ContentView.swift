@@ -34,7 +34,7 @@ struct ContentView: View {
                         HStack {
                             Image(uiImage: artistItem.albumCover ?? UIImage()).shadow(radius: 3)
                             VStack {
-                                Text(artistItem.collectionName!).frame(maxWidth: .infinity, alignment: .center)
+                                Text(artistItem.collectionName!).frame(maxWidth: .infinity, alignment: .center).bold()
                                 Text(artistItem.artistName!).font(.footnote)
                             }
                         }
@@ -60,7 +60,7 @@ struct AlbumDetailView : View {
         
         VStack(alignment: .center) {
             
-            Text(album.collectionName!)
+            Text(album.collectionName!).bold()
             Text(album.formattedReleaseDate!).font(.subheadline)
             Image(uiImage: album.bigCover ?? UIImage())
             
