@@ -14,6 +14,7 @@
 		EA888E532A0FB843000E0615 /* MOBA2_Lab_iTunes3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA888E522A0FB843000E0615 /* MOBA2_Lab_iTunes3Tests.swift */; };
 		EA888E5D2A0FB843000E0615 /* MOBA2_Lab_iTunes3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA888E5C2A0FB843000E0615 /* MOBA2_Lab_iTunes3UITests.swift */; };
 		EA888E5F2A0FB843000E0615 /* MOBA2_Lab_iTunes3UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA888E5E2A0FB843000E0615 /* MOBA2_Lab_iTunes3UITestsLaunchTests.swift */; };
+		EA888E6C2A0FCEB0000E0615 /* jsonhelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA888E6B2A0FCEB0000E0615 /* jsonhelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		EA888E582A0FB843000E0615 /* MOBA2_Lab_iTunes3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MOBA2_Lab_iTunes3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA888E5C2A0FB843000E0615 /* MOBA2_Lab_iTunes3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBA2_Lab_iTunes3UITests.swift; sourceTree = "<group>"; };
 		EA888E5E2A0FB843000E0615 /* MOBA2_Lab_iTunes3UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBA2_Lab_iTunes3UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EA888E6B2A0FCEB0000E0615 /* jsonhelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonhelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				EA888E412A0FB841000E0615 /* MOBA2_Lab_iTunes3App.swift */,
 				EA888E432A0FB841000E0615 /* ContentView.swift */,
+				EA888E6B2A0FCEB0000E0615 /* jsonhelpers.swift */,
 				EA888E452A0FB843000E0615 /* Assets.xcassets */,
 				EA888E472A0FB843000E0615 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA888E6C2A0FCEB0000E0615 /* jsonhelpers.swift in Sources */,
 				EA888E442A0FB841000E0615 /* ContentView.swift in Sources */,
 				EA888E422A0FB841000E0615 /* MOBA2_Lab_iTunes3App.swift in Sources */,
 			);
