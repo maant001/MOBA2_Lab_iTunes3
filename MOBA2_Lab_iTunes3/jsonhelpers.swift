@@ -14,8 +14,8 @@ class Jsonhelpers {
         do {
             let urlString = "https://itunes.apple.com/search?term=" + searchEntry + "&entity=album"
             let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let urlFinal = URL(string: urlEncoded)
-            let data = try Data(contentsOf: urlFinal!)
+            let urlFinal = URL(string: urlEncoded)!
+            let data = try Data(contentsOf: urlFinal)
             let decoder = JSONDecoder()
             let decodedData = try decoder.decode(ArtistWrapper.self, from: data)
             
@@ -30,14 +30,20 @@ class Jsonhelpers {
     class func loadSongs(collectionId: Int) -> [Song] {
         do {
             let urlString = "https://itunes.apple.com/lookup?id=" + String(collectionId) + "&entity=song"
+            
+            print(urlString)
+            
             let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let urlFinal = URL(string: urlEncoded)
-            let data = try Data(contentsOf: urlFinal!)
+            let urlFinal = URL(string: urlEncoded)!
+            let data = try Data(contentsOf: urlFinal)
             let decoder = JSONDecoder()
             let decodedData = try decoder.decode(SongWrapper.self, from: data)
             
+            print(decodedData)
+            
+            // TODO careful with filter here!!!
             return decodedData.results.filter({
-                return $0.wrapperType != nil
+                return $0.wrapperType != "collection"
             })
         } catch {
             fatalError("json not loaded\n\(error)")
@@ -47,9 +53,13 @@ class Jsonhelpers {
     class func loadOneAlbum(collectionId: Int) -> ArtistItem {
         do {
             let urlString = "https://itunes.apple.com/lookup?id=" + String(collectionId) + "&entity=song"
+            
+            print(urlString)
+
+            
             let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let urlFinal = URL(string: urlEncoded)
-            let data = try Data(contentsOf: urlFinal!)
+            let urlFinal = URL(string: urlEncoded)!
+            let data = try Data(contentsOf: urlFinal)
             let decoder = JSONDecoder()
             let decodedData = try decoder.decode(ArtistWrapper.self, from: data)
             

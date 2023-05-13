@@ -29,7 +29,7 @@ struct ContentView: View {
             NavigationView {
                 List(artistList) { artistItem in
                     
-                    NavigationLink(destination: AlbumDetailView(album: Jsonhelpers.loadOneAlbum(collectionId: artistItem.id), songs: Jsonhelpers.loadSongs(collectionId: artistItem.id), collectionId: artistItem.id)) {
+                    NavigationLink(destination: AlbumDetailView(collectionId: artistItem.id, album: Jsonhelpers.loadOneAlbum(collectionId: artistItem.id), songs: Jsonhelpers.loadSongs(collectionId: artistItem.id))) {
                         
                         HStack {
                             Image(uiImage: artistItem.albumCover ?? UIImage()).shadow(radius: 3)
@@ -52,9 +52,9 @@ struct ContentView: View {
 }
 
 struct AlbumDetailView : View {
+    var collectionId : Int
     @State var album : ArtistItem
     @State var songs = [Song] ()
-    var collectionId : Int
     
     var body : some View {
         
@@ -62,15 +62,16 @@ struct AlbumDetailView : View {
             
             Text(album.collectionName!)
             Text(album.formattedReleaseDate!).font(.subheadline)
-            Image(uiImage: album.albumCover ?? UIImage())
+            Image(uiImage: album.bigCover ?? UIImage())
             
             List(songs) { song in
                 
                 HStack {
                     
-                    //Text(String(song.trackNumber ?? 0))
-                    //Text(song.trackName!)
-                    //Text(String(song.time))
+                    Text(String(song.trackNumber!))
+                    Text(song.trackName!)
+                    Text(String(song.time))
+                    
                 }
             }
         }
@@ -98,19 +99,30 @@ struct ArtistItem: Identifiable, Decodable {
     }
     
     // important that the attribute names are the same than in call/json!
+    var artworkUrl60: String?
     var artworkUrl100: String?
     var albumCover : UIImage? {
         get {
-            return loadAlbumImage(urlImage: self.artworkUrl100)
+            return loadAlbumImage(urlImage: self.artworkUrl60)
         }
     }
+    var bigCover : UIImage? {
+        get {
+            let bigURL =                 self.artworkUrl100?.replacingOccurrences(of: "100x100bb", with: "256x256bb")
+                
+            return loadAlbumImage(urlImage: bigURL)
+        }
+    }
+    
     
     var releaseDate: String?
     var formattedReleaseDate: String? {
         get {
-            return String(releaseDate!.prefix(9))
+            return String(releaseDate!.prefix(10))
         }
     }
+    
+
     
     func loadAlbumImage(urlImage: String?) -> UIImage? {
         if urlImage != nil {
@@ -136,7 +148,7 @@ struct Song: Identifiable, Decodable {
     var trackId: Int?
     var wrapperType: String?
     var trackName: String?
-    //var trackNumber: Int?
+    var trackNumber: Int?
     var trackTimeMillis: Int?
     var id: Int {
         get {
